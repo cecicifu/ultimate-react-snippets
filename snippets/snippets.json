@@ -1,0 +1,191 @@
+{
+	"Functional Component Arrow": {
+		"key": "functionalComponentArrow",
+		"prefix": "fca",
+		"body": [
+			"type $1Props {",
+			"\t$2",
+			"}",
+			" ",
+			"const $1 = ({$2}: $1Props): JSX.Element => {",
+			"\treturn ( $0 );",
+			"}",
+			" ",
+			"export default $1;"
+		],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "Stateless Function Component"
+	},
+
+	"Functional Component": {
+		"key": "functionalComponent",
+		"prefix": "fc",
+		"body": [
+			"type $1Props {",
+			"\t$2",
+			"}",
+			" ",
+			"function $1({$2}: $1Props): JSX.Element {",
+			"\treturn ( $0 );",
+			"}",
+			"",
+			"export default $1;"
+		],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "Function Syntax Component"
+	},
+
+	"useCallback": {
+		"key": "useCallback",
+		"prefix": "useCallbackSnippet",
+		"body": [
+			"useCallback(",
+			"  () => {",
+			"    ${1:first}",
+			"  },",
+			"  [${2:second}],",
+			")",
+			""
+		],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "useCallback hook"
+	},
+
+	"useImperativeHandle": {
+		"key": "useImperativeHandle",
+		"prefix": "useImperativeHandleSnippet",
+		"body": [
+			"useImperativeHandle(",
+			"  ${1:first},",
+			"  () => {",
+			"    ${2:second}",
+			"  },",
+			"  [${3:third}],",
+			")"
+		],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "useImperativeHandle hook"
+	},
+
+	"useLayoutEffect": {
+		"key": "useLayoutEffect",
+		"prefix": "useLayoutEffectSnippet",
+		"body": [
+			"useLayoutEffect(() => {",
+			"  ${1:first}",
+			"",
+			"  return () => {",
+			"    ${2:second}",
+			"  };",
+			"}, [${3:third}])"
+		],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "useLayoutEffect hook"
+	},
+
+	"useContext": {
+		"key": "useContext",
+		"prefix": "useContextSnippet",
+		"body": ["const ${1:first} = useContext(${2:second})"],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "useContext hook"
+	},
+
+	"useMemo": {
+		"key": "useMemo",
+		"prefix": "useMemoSnippet",
+		"body": ["useMemo(() => ${1:first}, [${2:second}])"],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "useMemo hook"
+	},
+
+	"useReducer": {
+		"key": "useReducer",
+		"prefix": "useReducerSnippet",
+		"body": [
+			"const [state, dispatch] = useReducer(${1:first}, ${2:second}, ${3:third})"
+		],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "useReducer hook"
+	},
+
+	"useRef": {
+		"key": "useRef",
+		"prefix": "useRefSnippet",
+		"body": ["const ${1:first} = useRef(${2:second})"],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "useRef hook"
+	},
+
+	"useEffect": {
+		"key": "useEffect",
+		"prefix": "useEffectSnippet",
+		"body": ["useEffect(() => {", "\t$1", "}, []);"],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "useEffect hook"
+	},
+
+	"useState": {
+		"key": "useState",
+		"prefix": "useStateSnippet",
+		"body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2);"],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "useState hook"
+	},
+
+	"HOC Component": {
+		"key": "hocComponent",
+		"prefix": "hoc",
+		"body": [
+			"import React from 'react'",
+			"import PropTypes from 'prop-types'",
+			"",
+			"export default (WrappedComponent) => {",
+			"  const hocComponent = ({ ...props }) => <WrappedComponent {...props} />",
+			"",
+			"  hocComponent.propTypes = {}",
+			"",
+			"  return hocComponent",
+			"}",
+			""
+		],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "High Order Component"
+	},
+
+	"Context Provider": {
+		"key": "contextProvider",
+		"prefix": "cp",
+		"body": [
+			"export const $1 = React.createContext();",
+			"",
+			"const $1Provider = (props) => {",
+			"\t// Initial Provider State",
+			"\tconst state = {};",
+			"",
+			"\t// Reducer Function",
+			"\tconst $2 = (state, action) => {",
+			"\t\t",
+			"\t};",
+			"",
+			"\treturn (",
+			"\t\t<$1.Provider value={{state: state, $2}}>",
+			"\t\t\t{props.children}",
+			"\t\t</$1.Provider>",
+			"\t);",
+			"}",
+			"",
+			"export default $1Provider;"
+		],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "Context Provider"
+	},
+
+	"Console log": {
+		"key": "consoleLog",
+		"prefix": "clg",
+		"body": ["console.log($1)"],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "Console log"
+	}
+}

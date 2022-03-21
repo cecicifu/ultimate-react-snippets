@@ -1,0 +1,87 @@
+{
+	"name": "ultimate-react-snippets",
+	"displayName": "Ultimate React Snippets",
+	"description": "Snippets for ReactJS with TypeScript support",
+	"version": "1.0.0",
+	"publisher": "cecicifu",
+	"license": "MIT",
+	"icon": "images/logo.jpg",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cecicifu/ultimate-react-snippets.git"
+	},
+	"engines": {
+		"vscode": "^1.65.0"
+	},
+	"keywords": [
+		"Javascript",
+		"Typescript",
+		"React",
+		"React JS",
+		"React TS",
+		"React Snippets"
+	],
+	"categories": [
+		"Snippets"
+	],
+	"extensionKind": [
+    "ui",
+    "workspace"
+  ],
+	
+	"capabilities": {
+    "virtualWorkspaces": true,
+    "untrustedWorkspaces": {
+      "supported": true
+    }
+  },
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptReact",
+    "onLanguage:javascript",
+    "onLanguage:javascriptReact",
+    "onStartupFinished"
+  ],
+	"main": "./out/extension.js",
+	"contributes": {
+		"snippets": [
+			{
+				"language": "javascript",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "javascriptreact",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "typescript",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "typescriptreact",
+				"path": "./snippets/snippets.json"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.65.0",
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.0",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^5.12.1",
+		"@typescript-eslint/parser": "^5.12.1",
+		"eslint": "^8.9.0",
+		"glob": "^7.2.0",
+		"mocha": "^9.2.1",
+		"typescript": "^4.5.5",
+		"@vscode/test-electron": "^2.1.2"
+	}
+}
