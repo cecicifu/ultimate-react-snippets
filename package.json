@@ -2,7 +2,7 @@
 	"name": "ultimate-react-snippets",
 	"displayName": "Ultimate React Snippets",
 	"description": "Snippets for ReactJS with TypeScript support",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"publisher": "cecicifu",
 	"license": "MIT",
 	"icon": "images/logo.jpg",
@@ -11,7 +11,7 @@
 		"url": "https://github.com/cecicifu/ultimate-react-snippets.git"
 	},
 	"engines": {
-		"vscode": "^1.65.0"
+		"vscode": "^1.63.0"
 	},
 	"keywords": [
 		"Javascript",
