@@ -8,10 +8,10 @@
 			"}",
 			" ",
 			"const $1 = ({$2}: $1Props): JSX.Element => {",
-			"\treturn ( $0 );",
+			"\treturn ( $0 )",
 			"}",
 			" ",
-			"export default $1;"
+			"export default $1"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "Stateless Function Component"
@@ -26,10 +26,10 @@
 			"}",
 			" ",
 			"function $1({$2}: $1Props): JSX.Element {",
-			"\treturn ( $0 );",
+			"\treturn ( $0 )",
 			"}",
 			"",
-			"export default $1;"
+			"export default $1"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "Function Syntax Component"
@@ -76,7 +76,7 @@
 			"",
 			"  return () => {",
 			"    ${2:second}",
-			"  };",
+			"  }",
 			"}, [${3:third}])"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
@@ -120,7 +120,7 @@
 	"useEffect": {
 		"key": "useEffect",
 		"prefix": "useEffectSnippet",
-		"body": ["useEffect(() => {", "\t$1", "}, []);"],
+		"body": ["useEffect(() => {", "\t$1", "}, [])"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useEffect hook"
 	},
@@ -128,7 +128,7 @@
 	"useState": {
 		"key": "useState",
 		"prefix": "useStateSnippet",
-		"body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2);"],
+		"body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2)"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useState hook"
 	},
@@ -157,28 +157,60 @@
 		"key": "contextProvider",
 		"prefix": "cp",
 		"body": [
-			"export const $1 = React.createContext();",
+			"import { createContext } from 'react'",
+			"",
+			"export const $1Context = createContext()",
 			"",
 			"const $1Provider = (props) => {",
 			"\t// Initial Provider State",
-			"\tconst state = {};",
+			"\tconst state = {}",
 			"",
 			"\t// Reducer Function",
 			"\tconst $2 = (state, action) => {",
 			"\t\t",
-			"\t};",
+			"\t}",
 			"",
 			"\treturn (",
 			"\t\t<$1.Provider value={{state: state, $2}}>",
 			"\t\t\t{props.children}",
 			"\t\t</$1.Provider>",
-			"\t);",
+			"\t)",
 			"}",
 			"",
-			"export default $1Provider;"
+			"export default $1Provider"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "Context Provider"
+	},
+
+	"Context Provider Hook": {
+		"key": "contextProviderHook",
+		"prefix": "cpHook",
+		"body": [
+			"import { createContext, useContext } from 'react'",
+			"",
+			"const $1Context = createContext()",
+			"",
+			"export const $1Provider = (props) => {",
+			"\t// Initial Provider State",
+			"\tconst state = {}",
+			"",
+			"\t// Reducer Function",
+			"\tconst $2 = (state, action) => {",
+			"\t\t",
+			"\t}",
+			"",
+			"\treturn (",
+			"\t\t<$1.Provider value={{state: state, $2}}>",
+			"\t\t\t{props.children}",
+			"\t\t</$1.Provider>",
+			"\t)",
+			"}",
+			"",
+			"export const use$1 = () => useContext($1Context)"
+		],
+		"scope": "typescript,typescriptreact,javascript,javascriptreact",
+		"description": "Context Provider with custom hook"
 	},
 
 	"Console log": {
