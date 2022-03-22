@@ -2,7 +2,7 @@
 	"name": "ultimate-react-snippets",
 	"displayName": "Ultimate React Snippets",
 	"description": "Snippets for ReactJS with TypeScript support",
-	"version": "1.1.2",
+	"version": "1.1.3",
 	"publisher": "cecicifu",
 	"license": "MIT",
 	"icon": "images/logo.jpg",
