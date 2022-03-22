@@ -45,9 +45,9 @@
 		"body": [
 			"useCallback(",
 			"\t() => {",
-			"\t\t${1:first}",
+			"\t\t$1",
 			"\t},",
-			"\t[${2:second}],",
+			"\t[$2],",
 			")",
 			""
 		],
@@ -60,11 +60,11 @@
 		"prefix": "useImperativeHandleSnippet",
 		"body": [
 			"useImperativeHandle(",
-			"\t${1:first},",
+			"\t$1,",
 			"\t() => {",
-			"\t\t${2:second}",
+			"\t\t$2",
 			"\t},",
-			"\t[${3:third}],",
+			"\t[$3],",
 			")"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
@@ -76,12 +76,12 @@
 		"prefix": "useLayoutEffectSnippet",
 		"body": [
 			"useLayoutEffect(() => {",
-			"\t${1:first}",
+			"\t$1",
 			"",
 			"\treturn () => {",
-			"\t\t${2:second}",
+			"\t\t$2",
 			"\t}",
-			"}, [${3:third}])"
+			"}, [$3])"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useLayoutEffect hook"
@@ -90,7 +90,7 @@
 	"useContext": {
 		"key": "useContext",
 		"prefix": "useContextSnippet",
-		"body": ["const ${1:first} = useContext(${2:second})"],
+		"body": ["const $1 = useContext($2)"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useContext hook"
 	},
@@ -98,7 +98,7 @@
 	"useMemo": {
 		"key": "useMemo",
 		"prefix": "useMemoSnippet",
-		"body": ["useMemo(() => ${1:first}, [${2:second}])"],
+		"body": ["useMemo(() => $1, [$2])"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useMemo hook"
 	},
@@ -107,7 +107,7 @@
 		"key": "useReducer",
 		"prefix": "useReducerSnippet",
 		"body": [
-			"const [state, dispatch] = useReducer(${1:first}, ${2:second}, ${3:third})"
+			"const [state, dispatch] = useReducer($1, $2, $3)"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useReducer hook"
@@ -116,7 +116,7 @@
 	"useRef": {
 		"key": "useRef",
 		"prefix": "useRefSnippet",
-		"body": ["const ${1:first} = useRef(${2:second})"],
+		"body": ["const $1 = useRef($2)"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useRef hook"
 	},
@@ -143,18 +143,18 @@
 		"body": [
 			"import React, { useState } from 'react'",
 			"",
-			"type ${1/(.*)/${1:/capitalize}/}Type = {",
-			"\t$1: string",
+			"type $1Type = {",
+			"\t$3",
 			"}",
 			"",
-			"export function with${1/(.*)/${1:/capitalize}/}<T>(",
-			"\tWrappedComponent: React.ComponentType<T & ${1/(.*)/${1:/capitalize}/}Type>",
+			"export function with$1<T>(",
+			"\tWrappedComponent: React.ComponentType<T & $1Type>",
 			") {",
-			"\tconst [$1, set${1/(.*)/${1:/capitalize}/}] = useState('')",
-			"\tset${1/(.*)/${1:/capitalize}/}($3)",
+			"\tconst [$2, set$1] = useState($0)",
+			"\t// set$1('some important data.')",
 			"",
 			"\treturn (props: T) => {",
-			"\t\treturn <WrappedComponent {...props} $1={$1} />",
+			"\t\treturn <WrappedComponent {...props} $2={$2} />",
 			"\t};",
 			"}"
 		],
@@ -168,14 +168,18 @@
 		"body": [
 			"import React, { createContext } from 'react'",
 			"",
-			"export const $1Context = createContext(null)",
+			"export const $1Context = createContext<any>(null)",
 			"",
-			"const $1Provider = (props) => {",
+			"type $1Props = {",
+			"\tchildren: React.ReactNode",
+			"}",
+			"",
+			"const $1Provider = (props: $1Props) => {",
 			"\t// Initial Provider State",
 			"\tconst state = {}",
 			"",
 			"\t// Reducer Function",
-			"\tconst $2 = (state, action) => {",
+			"\tconst $2 = (state: any, action: any) => {",
 			"\t\t",
 			"\t}",
 			"",
@@ -200,12 +204,16 @@
 			"",
 			"const $1Context = createContext(null)",
 			"",
-			"export const $1Provider = (props) => {",
+			"type $1Props = {",
+			"\tchildren: React.ReactNode",
+			"}",
+			"",
+			"export const $1Provider = (props: $1Props) => {",
 			"\t// Initial Provider State",
 			"\tconst state = {}",
 			"",
 			"\t// Reducer Function",
-			"\tconst $2 = (state, action) => {",
+			"\tconst $2 = (state: any, action: any) => {",
 			"\t\t",
 			"\t}",
 			"",
