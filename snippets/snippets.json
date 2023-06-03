@@ -9,7 +9,7 @@
 			"\t$2",
 			"}",
 			"",
-			"const $1 = ({$2}: $1Props): JSX.Element => {",
+			"const $1 = ({$2}: $1Props) => {",
 			"\treturn ( $0 )",
 			"}",
 			"",
@@ -29,7 +29,7 @@
 			"\t$2",
 			"}",
 			"",
-			"function $1({$2}: $1Props): JSX.Element {",
+			"function $1({$2}: $1Props) {",
 			"\treturn ( $0 )",
 			"}",
 			"",
@@ -42,15 +42,7 @@
 	"useCallback": {
 		"key": "useCallback",
 		"prefix": "useCallbackSnippet",
-		"body": [
-			"useCallback(",
-			"\t() => {",
-			"\t\t$1",
-			"\t},",
-			"\t[$2],",
-			")",
-			""
-		],
+		"body": ["useCallback(", "\t() => {", "\t\t$1", "\t},", "\t[$2],", ")", ""],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useCallback hook"
 	},
@@ -106,9 +98,7 @@
 	"useReducer": {
 		"key": "useReducer",
 		"prefix": "useReducerSnippet",
-		"body": [
-			"const [state, dispatch] = useReducer($1, $2, $3)"
-		],
+		"body": ["const [state, dispatch] = useReducer($1, $2, $3)"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useReducer hook"
 	},
