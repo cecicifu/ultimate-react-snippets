@@ -1,47 +1,39 @@
 {
-	"Functional Component Arrow": {
-		"key": "functionalComponentArrow",
-		"prefix": "fca",
+	"Arrow function component": {
+		"key": "ArrowFunctionComponent",
+		"prefix": "afc",
 		"body": [
-			"import React from 'react'",
-			"",
-			"type $1Props = {",
-			"\t$2",
+			"type ${1/(.*)/${1:/capitalize}/}Props = {",
+			"\t",
 			"}",
 			"",
-			"const $1 = ({$2}: $1Props) => {",
+			"export const ${1/(.*)/${1:/capitalize}/} = ({}: ${1/(.*)/${1:/capitalize}/}Props) => {",
 			"\treturn ( $0 )",
-			"}",
-			"",
-			"export default $1"
+			"}"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
-		"description": "Stateless Function Component"
+		"description": "Arrow function component"
 	},
 
-	"Functional Component": {
-		"key": "functionalComponent",
+	"Function component": {
+		"key": "functionComponent",
 		"prefix": "fc",
 		"body": [
-			"import React from 'react'",
-			"",
-			"type $1Props = {",
-			"\t$2",
+			"type ${1/(.*)/${1:/capitalize}/}Props = {",
+			"\t",
 			"}",
 			"",
-			"function $1({$2}: $1Props) {",
+			"export function ${1/(.*)/${1:/capitalize}/}({}: ${1/(.*)/${1:/capitalize}/}Props) {",
 			"\treturn ( $0 )",
-			"}",
-			"",
-			"export default $1"
+			"}"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
-		"description": "Function Syntax Component"
+		"description": "Function component"
 	},
 
 	"useCallback": {
 		"key": "useCallback",
-		"prefix": "useCallbackSnippet",
+		"prefix": "callback",
 		"body": ["useCallback(", "\t() => {", "\t\t$1", "\t},", "\t[$2],", ")", ""],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useCallback hook"
@@ -49,7 +41,7 @@
 
 	"useImperativeHandle": {
 		"key": "useImperativeHandle",
-		"prefix": "useImperativeHandleSnippet",
+		"prefix": "imperative",
 		"body": [
 			"useImperativeHandle(",
 			"\t$1,",
@@ -65,7 +57,7 @@
 
 	"useLayoutEffect": {
 		"key": "useLayoutEffect",
-		"prefix": "useLayoutEffectSnippet",
+		"prefix": "layout",
 		"body": [
 			"useLayoutEffect(() => {",
 			"\t$1",
@@ -81,7 +73,7 @@
 
 	"useContext": {
 		"key": "useContext",
-		"prefix": "useContextSnippet",
+		"prefix": "context",
 		"body": ["const $1 = useContext($2)"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useContext hook"
@@ -89,7 +81,7 @@
 
 	"useMemo": {
 		"key": "useMemo",
-		"prefix": "useMemoSnippet",
+		"prefix": "memo",
 		"body": ["useMemo(() => $1, [$2])"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useMemo hook"
@@ -97,15 +89,15 @@
 
 	"useReducer": {
 		"key": "useReducer",
-		"prefix": "useReducerSnippet",
-		"body": ["const [state, dispatch] = useReducer($1, $2, $3)"],
+		"prefix": "reducer",
+		"body": ["const [state, dispatch] = useReducer($1, $2)"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useReducer hook"
 	},
 
 	"useRef": {
 		"key": "useRef",
-		"prefix": "useRefSnippet",
+		"prefix": "ref",
 		"body": ["const $1 = useRef($2)"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useRef hook"
@@ -113,15 +105,23 @@
 
 	"useEffect": {
 		"key": "useEffect",
-		"prefix": "useEffectSnippet",
-		"body": ["useEffect(() => {", "\t$1", "}, [])"],
+		"prefix": "effect",
+		"body": [
+			"useEffect(() => {",
+			"\t$1",
+			"",
+			"\treturn () => {",
+			"\t\t$2",
+			"\t}",
+			"}, [$3])"
+		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useEffect hook"
 	},
 
 	"useState": {
 		"key": "useState",
-		"prefix": "useStateSnippet",
+		"prefix": "state",
 		"body": ["const [${1}, set${1/(.*)/${1:/capitalize}/}] = useState($2)"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "useState hook"
@@ -131,17 +131,15 @@
 		"key": "hocComponent",
 		"prefix": "hoc",
 		"body": [
-			"import React, { useState } from 'react'",
+			"import { useState, ComponentType } from 'react'",
 			"",
-			"type $1Type = {",
-			"\t$3",
-			"}",
+			"type ${1/(.*)/${1:/capitalize}/}Type = {}",
 			"",
-			"export function with$1<T>(",
-			"\tWrappedComponent: React.ComponentType<T & $1Type>",
+			"export function with${1/(.*)/${1:/capitalize}/}<T>(",
+			"\tWrappedComponent: ComponentType<T & ${1/(.*)/${1:/capitalize}/}Type>",
 			") {",
-			"\tconst [$2, set$1] = useState($0)",
-			"\t// set$1('some important data.')",
+			"\tconst [$2, set${1/(.*)/${1:/capitalize}/}] = useState($0)",
+			"\t// set${1/(.*)/${1:/capitalize}/}('some important data.')",
 			"",
 			"\treturn (props: T) => {",
 			"\t\treturn <WrappedComponent {...props} $2={$2} />",
@@ -156,74 +154,83 @@
 		"key": "contextProvider",
 		"prefix": "cp",
 		"body": [
-			"import React, { createContext } from 'react'",
+			"import { createContext, useReducer, ReactNode } from 'react'",
 			"",
-			"export const $1Context = createContext<any>(null)",
+			"type ${1/(.*)/${1:/capitalize}/}Context = {}",
 			"",
-			"type $1Props = {",
-			"\tchildren: React.ReactNode",
+			"type ${1/(.*)/${1:/capitalize}/}Action = {}",
+			"",
+			"export const initialState: ${1/(.*)/${1:/capitalize}/}Context = {}",
+			"",
+			"export const $2Reducer = (state: ${1/(.*)/${1:/capitalize}/}Context, action: ${1/(.*)/${1:/capitalize}/}Action) => {}",
+			"",
+			"const ${1/(.*)/${1:/capitalize}/}Context = createContext<${1/(.*)/${1:/capitalize}/}Context | null>(null)",
+			"",
+			"type ${1/(.*)/${1:/capitalize}/}Props = {",
+			"\tchildren: ReactNode",
 			"}",
 			"",
-			"const $1Provider = (props: $1Props) => {",
-			"\t// Initial Provider State",
-			"\tconst state = {}",
-			"",
-			"\t// Reducer Function",
-			"\tconst $2 = (state: any, action: any) => {",
-			"\t\t",
-			"\t}",
+			"export const ${1/(.*)/${1:/capitalize}/}Provider = ({children}: ${1/(.*)/${1:/capitalize}/}Props) => {",
+			"\tconst [state, dispatch] = useReducer($2Reducer, initialState)",
 			"",
 			"\treturn (",
-			"\t\t<$1Context.Provider value={{state: state, $2}}>",
-			"\t\t\t{props.children}",
-			"\t\t</$1Context.Provider>",
+			"\t\t<${1/(.*)/${1:/capitalize}/}Context.Provider value={{state, dispatch}}>",
+			"\t\t\t{children}",
+			"\t\t</${1/(.*)/${1:/capitalize}/}Context.Provider>",
 			"\t)",
-			"}",
-			"",
-			"export default $1Provider"
+			"}"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
-		"description": "Context Provider"
+		"description": "Context"
 	},
 
 	"Context Provider Hook": {
 		"key": "contextProviderHook",
 		"prefix": "cpHook",
 		"body": [
-			"import React, { createContext, useContext } from 'react'",
+			"import { createContext, useContext, useReducer, ReactNode } from 'react'",
 			"",
-			"const $1Context = createContext(null)",
+			"type ${1/(.*)/${1:/capitalize}/}Context = {}",
 			"",
-			"type $1Props = {",
-			"\tchildren: React.ReactNode",
+			"type ${1/(.*)/${1:/capitalize}/}Action = {}",
+			"",
+			"export const initialState: ${1/(.*)/${1:/capitalize}/}Context = {}",
+			"",
+			"export const $2Reducer = (state: ${1/(.*)/${1:/capitalize}/}Context, action: ${1/(.*)/${1:/capitalize}/}Action) => {}",
+			"",
+			"const ${1/(.*)/${1:/capitalize}/}Context = createContext<${1/(.*)/${1:/capitalize}/}Context | null>(null)",
+			"",
+			"type ${1/(.*)/${1:/capitalize}/}Props = {",
+			"\tchildren: ReactNode",
 			"}",
 			"",
-			"export const $1Provider = (props: $1Props) => {",
-			"\t// Initial Provider State",
-			"\tconst state = {}",
-			"",
-			"\t// Reducer Function",
-			"\tconst $2 = (state: any, action: any) => {",
-			"\t\t",
-			"\t}",
+			"export const ${1/(.*)/${1:/capitalize}/}Provider = ({children}: ${1/(.*)/${1:/capitalize}/}Props) => {",
+			"\tconst [state, dispatch] = useReducer($2Reducer, initialState)",
 			"",
 			"\treturn (",
-			"\t\t<$1Context.Provider value={{state: state, $2}}>",
-			"\t\t\t{props.children}",
-			"\t\t</$1Context.Provider>",
+			"\t\t<${1/(.*)/${1:/capitalize}/}Context.Provider value={{state, dispatch}}>",
+			"\t\t\t{children}",
+			"\t\t</${1/(.*)/${1:/capitalize}/}Context.Provider>",
 			"\t)",
 			"}",
 			"",
-			"export const use$1 = () => useContext($1Context)"
+			"export const use${1/(.*)/${1:/capitalize}/} = () => {",
+			"\tconst context = useContext(${1/(.*)/${1:/capitalize}/}Context)",
+			"\tif (!context) {",
+			"\t\tthrow new Error('use${1/(.*)/${1:/capitalize}/} must be used within a ${1/(.*)/${1:/capitalize}/}Provider')",
+			"\t}",
+			"",
+			"\treturn context",
+			"}"
 		],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
-		"description": "Context Provider with custom hook"
+		"description": "Context with custom hook"
 	},
 
 	"Console log": {
 		"key": "consoleLog",
 		"prefix": "clg",
-		"body": ["console.log($1)"],
+		"body": ["console.log('$1', $1)"],
 		"scope": "typescript,typescriptreact,javascript,javascriptreact",
 		"description": "Console log"
 	}

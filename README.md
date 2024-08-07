@@ -1,2 +1,3 @@
 # Ultimate React Snippets (VSCode extension)
-Snippets for ReactJS with TypeScript support
+
+Snippets for React with TypeScript support
